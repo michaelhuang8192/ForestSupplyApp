@@ -170,7 +170,7 @@ public class InventoryActivity extends SimpleMasterDetailActivity implements
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 
         //fps
-        int[] fpsRange = selectPreviewFpsRange(mCamera, 2);
+        int[] fpsRange = selectPreviewFpsRange(mCamera, 30);
         parameters.setPreviewFpsRange(fpsRange[0], fpsRange[1]);
 
         mCamera.setParameters(parameters);
