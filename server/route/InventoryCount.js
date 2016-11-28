@@ -22,7 +22,7 @@ gRouter.get('/search', search);
 gRouter.get('/getPage', getPage);
 gRouter.get('/getCountRecords', getCountRecords);
 gRouter.post('/updateDoc', adminOnly, gMulter.any(), updateDoc);
-gRouter.post('/addCountRecord', adminOnly, gJsonParser, addCountRecord);
+gRouter.post('/addCountRecord', gJsonParser, addCountRecord);
 gRouter.post('/deleteDoc', adminOnly, gJsonParser, gUrlencodedParser, deleteDoc);
 
 
