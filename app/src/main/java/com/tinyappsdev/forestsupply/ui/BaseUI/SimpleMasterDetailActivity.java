@@ -244,7 +244,7 @@ public abstract class SimpleMasterDetailActivity extends BaseActivity implements
     @Override
     public boolean onQueryTextSubmit(String query) {
         mHandler.removeCallbacks(mSearchDelay);
-        if(mIsSearchActive) mHandler.postDelayed(mSearchDelay, 300);
+        if(mIsSearchActive) mHandler.postDelayed(mSearchDelay, 500);
 
         return true;
     }
