@@ -1,0 +1,71 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tinyappsdev.forestsupply.ui.InventoryFragment.InventoryItemInfoFragment">
+
+
+    <LinearLayout
+        android:background="#F1F8E9"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/prodAlu"
+            android:text="hp"
+            android:textColor="?attr/colorAccent"
+            android:textStyle="italic|bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/prodDesc"
+            android:text="hp002"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="70dp"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/add" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="showScanner"
+        android:src="@drawable/barcode" />
+
+</FrameLayout>

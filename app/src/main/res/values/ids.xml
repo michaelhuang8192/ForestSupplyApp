@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="SimpleMasterDetailOnItemUpdate" type="id" />
+    <item name="SimpleMasterDetailOnSearchQueryChange" type="id" />
+
+    <item name="FrameDataProcessed" type="id" />
+</resources>
