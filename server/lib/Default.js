@@ -1,4 +1,7 @@
+var gExpress = require('express');
 
-exports.DefaultHandler = (req, res, next) => {
+var gRouter = exports.DefaultHandler = gExpress.Router();
+
+gRouter.all('/', (req, res, next) => {
 	res.redirect('/web/');
-}
+});
