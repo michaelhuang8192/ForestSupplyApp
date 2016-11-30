@@ -68,7 +68,7 @@ public class InventoryActivity extends SimpleMasterDetailActivity implements
         if(bundle != null) {
             mSessionId = bundle.getLong("SessionId");
             mTeamId = bundle.getInt("TeamId");
-            getSupportActionBar().setTitle(bundle.getString("SessionName") + " - Team #" + mTeamId);
+            getSupportActionBar().setTitle("Team #" + mTeamId + " - " + bundle.getString("SessionName"));
         }
 
 
