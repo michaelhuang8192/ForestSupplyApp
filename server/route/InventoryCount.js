@@ -381,21 +381,25 @@ function _getCountReport(db, inventoryCountId, compactMode) {
 		{
 			$group : {
 				_id: {productNum: "$productNum", teamId: "$teamId", uom: "$uom"},
-				quantity: {$sum: "$quantity"}
+				quantity: {$sum: "$quantity"},
+				createdTime: {$max: "$createdTime"}
 			}
 		},
 		{
 			$group : {
 				_id: {productNum: "$_id.productNum", teamId: "$_id.teamId"},
-				records: {$push: {quantity: "$quantity", uom: "$_id.uom"}}
+				records: {$push: {quantity: "$quantity", uom: "$_id.uom"}},
+				createdTime: {$max: "$createdTime"}
 			}
 		},
 		{
 			$group : {
 				_id: {productNum: "$_id.productNum"},
-				teamRecords: {$push: {teamId: "$_id.teamId", records: "$records"}}
+				teamRecords: {$push: {teamId: "$_id.teamId", records: "$records"}},
+				createdTime: {$max: "$createdTime"}
 			}
-		}
+		},
+		{ $sort : {createdTime : -1} }
 	])
 	.toArray()
 	.then((docs) => {
