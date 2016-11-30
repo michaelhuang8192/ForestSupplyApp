@@ -15,7 +15,7 @@ adapter.getView = function(position) {
 		var date = new Date();
 		date.setTime(item.createdTime);
 		return (
-			<div className="list-group-item">
+			<div className="listItem">
 				<div className="row">
 					<div className="col-xs-1"><b>#{item._id}</b></div>
 					<div className="col-xs-3">{item.name}</div>
@@ -120,12 +120,11 @@ export default class _ extends React.Component {
 	render() {
     	return (
 <div className="container" id="container_orders">
-	<div>
-<button onClick={this.popNewCountDialog.bind(this)} type="button" className="btn btn-default" aria-label="Left Align">
+	<div className="toolbox">
+<button onClick={this.popNewCountDialog.bind(this)} type="button" className="btn btn-success pull-right" aria-label="Left Align">
   <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
 	</div>
-	<br/>
 	<ListView
 		ref="listView"
 		adapter={adapter}

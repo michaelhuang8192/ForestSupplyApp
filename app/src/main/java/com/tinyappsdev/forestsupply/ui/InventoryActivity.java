@@ -43,8 +43,8 @@ import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 public class InventoryActivity extends SimpleMasterDetailActivity implements
         InventoryActivityInterface {
 
-    private String mSessionName;
     private long mSessionId;
+    private int mTeamId;
     private Handler mBarcodeHandler;
 
     public static final int DEFAULT_BARCODE_FORMATS = Barcode.UPC_A | Barcode.UPC_E
@@ -67,9 +67,10 @@ public class InventoryActivity extends SimpleMasterDetailActivity implements
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
             mSessionId = bundle.getLong("SessionId");
-            mSessionName = bundle.getString("SessionName");
+            mTeamId = bundle.getInt("TeamId");
+            getSupportActionBar().setTitle(bundle.getString("SessionName") + " - Team #" + mTeamId);
         }
-        getSupportActionBar().setTitle(mSessionName);
+
 
         mTabLayout.setVisibility(View.GONE);
     }
@@ -242,10 +243,61 @@ public class InventoryActivity extends SimpleMasterDetailActivity implements
     }
 
     @Override
+    public int getTeamId() {
+        return mTeamId;
+    }
+
+    @Override
     public void addCountRecord(CountRecord countRecord) {
         if(mResult != null) mResult.cancel();
         mResult = AppGlobal.getInstance().getUiApiCallClient().makeCall(
                 "/InventoryCount/addCountRecord",
+                countRecord,
+                Map.class,
+                new ApiCallClient.OnResultListener<Map>() {
+                    @Override
+                    public void onResult(ApiCallClient.Result<Map> result) {
+                        TinyMap map = TinyMap.AsTinyMap(result.data);
+                        if(result.error != null || map == null || !map.getBoolean("success")) {
+                            TinyUtils.showMsgBox(getApplicationContext(), R.string.error_occurred);
+                        } else if(map.getLong("_id") <= 0) {
+                            TinyUtils.showMsgBox(getApplicationContext(), R.string.error_occurred);
+                        } else {
+                            sendMessage(R.id.SimpleMasterDetailOnItemUpdate);
+                        }
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void editCountRecord(CountRecord countRecord) {
+        if(mResult != null) mResult.cancel();
+        mResult = AppGlobal.getInstance().getUiApiCallClient().makeCall(
+                "/InventoryCount/editCountRecord",
+                countRecord,
+                Map.class,
+                new ApiCallClient.OnResultListener<Map>() {
+                    @Override
+                    public void onResult(ApiCallClient.Result<Map> result) {
+                        TinyMap map = TinyMap.AsTinyMap(result.data);
+                        if(result.error != null || map == null || !map.getBoolean("success")) {
+                            TinyUtils.showMsgBox(getApplicationContext(), R.string.error_occurred);
+                        } else if(map.getLong("_id") <= 0) {
+                            TinyUtils.showMsgBox(getApplicationContext(), R.string.error_occurred);
+                        } else {
+                            sendMessage(R.id.SimpleMasterDetailOnItemUpdate);
+                        }
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void deleteCountRecord(CountRecord countRecord) {
+        if(mResult != null) mResult.cancel();
+        mResult = AppGlobal.getInstance().getUiApiCallClient().makeCall(
+                "/InventoryCount/deleteCountRecord",
                 countRecord,
                 Map.class,
                 new ApiCallClient.OnResultListener<Map>() {

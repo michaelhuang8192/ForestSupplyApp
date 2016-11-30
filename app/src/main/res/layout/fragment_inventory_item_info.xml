@@ -5,38 +5,77 @@
     android:layout_height="match_parent"
     tools:context="com.tinyappsdev.forestsupply.ui.InventoryFragment.InventoryItemInfoFragment">
 
-
     <LinearLayout
         android:background="#F1F8E9"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="70dp">
 
-        <TextView
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:id="@+id/prodAlu"
-            android:text="hp"
-            android:textColor="?attr/colorAccent"
-            android:textStyle="italic|bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <View
-            android:layout_width="12dp"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="123456"
+                android:id="@+id/prodNum"
+                android:textColor="#FF9800"
+                android:textStyle="italic|bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="HP123"
+                android:id="@+id/prodAlu"
+                android:textColor="?attr/colorAccent"
+                android:textStyle="italic|bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:id="@+id/prodOnHand"
+                android:textColor="#009688"
+                android:textStyle="italic|bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="102cs"
+                android:id="@+id/prodCountRecord"
+                android:textColor="#4CAF50"
+                android:textStyle="italic|bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+        </LinearLayout>
         <TextView
             android:ellipsize="end"
             android:maxLines="1"
             android:id="@+id/prodDesc"
             android:text="hp002"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 
@@ -48,7 +87,7 @@
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
         />
 

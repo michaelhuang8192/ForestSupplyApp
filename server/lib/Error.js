@@ -17,13 +17,15 @@ exports.UserErrorPromise = function(message) {
 	return Promise.reject(new UserError(message));
 }
 
-
 exports.DefaultErrorHandler = (err, req, res, next) => {
 	if(err instanceof UserError) {
+		gLogger.error("DefaultErrorHandler", err.stack);
 		res.json({success: false, error: err.message});
-	} else if(err == null || err.error == null) {
+	} else if(err instanceof Error) {
+		gLogger.error("DefaultErrorHandler", err.stack);
 		res.json({success: false, error: "Unexpected Error"});
 	} else if(err.error instanceof UserError) {
+		gLogger.error("DefaultErrorHandler", err.error.stack);
 		res.json({success: false, error: err.error.message});
 	} else if(err.error instanceof Error) {
 		gLogger.error("DefaultErrorHandler", err.error.stack);

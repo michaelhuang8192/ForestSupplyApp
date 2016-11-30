@@ -119,6 +119,7 @@ public class InventorySearchFragment extends BaseFragment<InventoryActivityInter
         @BindView(R.id.prodNum) TextView prodNum;
         @BindView(R.id.prodAlu) TextView prodAlu;
         @BindView(R.id.prodDesc) TextView prodDesc;
+        @BindView(R.id.prodOnHand) TextView prodOnHand;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -161,10 +162,12 @@ public class InventorySearchFragment extends BaseFragment<InventoryActivityInter
                 viewHolder.prodNum.setText("");
                 viewHolder.prodAlu.setText("");
                 viewHolder.prodDesc.setText("");
+                viewHolder.prodOnHand.setText("");
             } else {
                 viewHolder.prodNum.setText(product.getProductNum());
                 viewHolder.prodAlu.setText(product.getManufacturerNo());
                 viewHolder.prodDesc.setText(product.getDescription());
+                viewHolder.prodOnHand.setText(product.getOnHand() + "");
             }
 
         }

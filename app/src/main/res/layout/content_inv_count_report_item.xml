@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
             android:layout_weight="1"
@@ -18,28 +17,33 @@
             android:layout_height="wrap_content"
             android:text="1000"
             android:textStyle=""
-            android:id="@+id/sessionItemCount"
+            android:id="@+id/prodNum"
             android:textAppearance="?android:attr/textAppearanceMedium"
             />
         <TextView
+            android:textColor="#0288D1"
             android:gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="year"
-            android:id="@+id/sessionName"
+            android:text="10cs"
+            android:id="@+id/team1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             />
-
-        <ImageButton
-            android:id="@+id/sessionReport"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/report"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
+        <TextView
+            android:textColor="#F57C00"
+            android:gravity="center_horizontal"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="20cs"
+            android:id="@+id/team2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
     </LinearLayout>
 
     <View

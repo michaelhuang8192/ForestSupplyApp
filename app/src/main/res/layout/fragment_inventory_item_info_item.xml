@@ -17,8 +17,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="+1CS"
-            android:textStyle=""
             android:id="@+id/recordQuantity"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+        <TextView
+            android:gravity="center_horizontal"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="pk"
+            android:id="@+id/recordUser"
             android:textAppearance="?android:attr/textAppearanceMedium"
             />
         <TextView
@@ -32,6 +42,14 @@
             android:id="@+id/recordTime"
             android:textAppearance="?android:attr/textAppearanceMedium"
             />
+
+        <ImageButton
+            android:id="@+id/recordEdit"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
     <View

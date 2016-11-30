@@ -40,7 +40,9 @@ var filterCountRecord = exports.filterCountRecord = (js) => {
 	var newJs = {};
 	newJs._id = parseInt(js._id) || 0;
 	newJs.inventoryCountId = parseInt(js.inventoryCountId) || 0;
+	newJs.teamId = parseInt(js.teamId) || 0;
 	newJs.userId = parseInt(js.userId) || 0;
+	newJs.userName = js.userName == null ? null : String(js.userName);
 	newJs.productNum = js.productNum == null ? null : String(js.productNum);
 	newJs.uom = js.uom == null ? null : String(js.uom);
 	newJs.quantity = parseInt(js.quantity) || 0;

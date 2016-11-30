@@ -45,6 +45,11 @@ function ArrayAdapter(arrayList) {
 ArrayAdapter.prototype = Object.create(Adapter.prototype);
 ArrayAdapter.prototype.constructor = ArrayAdapter;
 
+ArrayAdapter.prototype.setData = function(arrayList) {
+	this.arrayList = arrayList || [];
+	this.notifyDataSetChanged();
+};
+
 ArrayAdapter.prototype.getCount = function() {
 	return this.arrayList.length;
 };

@@ -15,7 +15,8 @@
             <TextView
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:layout_width="150dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="123456"
                 android:id="@+id/prodNum"
@@ -26,11 +27,24 @@
             <TextView
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="HP123"
                 android:id="@+id/prodAlu"
                 android:textColor="?attr/colorAccent"
+                android:textStyle="italic|bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="HP123"
+                android:id="@+id/prodOnHand"
+                android:textColor="#009688"
                 android:textStyle="italic|bold"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />

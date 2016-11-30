@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute, Redirect } from 'react-route
 import App from './App'
 import Home from './Home'
 import InventoryCount from './InventoryCount'
+import InventoryCountReport from './InventoryCountReport'
 import User from './User'
 
 $(function() {
@@ -16,6 +17,7 @@ ReactDOM.render((
     <Route path="home" component={Home}/>
     <Route path="user" component={User}/>
     <Route path="inventory-count" component={InventoryCount}/>
+    <Route path="inventory-count-report/:id" component={InventoryCountReport}/>
   </Route>
   <Redirect from="/" to="/web/" />
   <Redirect from="/web" to="/web/" />

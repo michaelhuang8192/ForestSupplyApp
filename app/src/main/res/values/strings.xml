@@ -27,6 +27,7 @@
 
     <string name="msg_invalid_input">Invalid Input</string>
     <string name="title_activity_inventory_count_session">Inventory Count Session</string>
+    <string name="title_activity_inv_count_report">InvCountReportActivity</string>
 
 
 </resources>

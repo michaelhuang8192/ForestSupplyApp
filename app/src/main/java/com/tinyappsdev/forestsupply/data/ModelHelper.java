@@ -209,7 +209,9 @@ public class ModelHelper {
 		CountRecord obj = new CountRecord();
 		obj.setId((long)map.get("_id"));
 		obj.setInventoryCountId((long)map.get("inventoryCountId"));
+		obj.setTeamId((int)map.get("teamId"));
 		obj.setUserId((long)map.get("userId"));
+		obj.setUserName((String)map.get("userName"));
 		obj.setProductNum((String)map.get("productNum"));
 		obj.setUom((String)map.get("uom"));
 		obj.setQuantity((int)map.get("quantity"));
@@ -222,7 +224,9 @@ public class ModelHelper {
 		Map map = new HashMap();
 		map.put("_id", obj.getId());
 		map.put("inventoryCountId", obj.getInventoryCountId());
+		map.put("teamId", obj.getTeamId());
 		map.put("userId", obj.getUserId());
+		map.put("userName", obj.getUserName());
 		map.put("productNum", obj.getProductNum());
 		map.put("uom", obj.getUom());
 		map.put("quantity", obj.getQuantity());
@@ -240,7 +244,9 @@ public class ModelHelper {
 
 		m.setId(cursor.getLong(cursor.getColumnIndex(prefix + "_id")));
 		m.setInventoryCountId(cursor.getLong(cursor.getColumnIndex(prefix + "inventoryCountId")));
+		m.setTeamId(cursor.getInt(cursor.getColumnIndex(prefix + "teamId")));
 		m.setUserId(cursor.getLong(cursor.getColumnIndex(prefix + "userId")));
+		m.setUserName(cursor.getString(cursor.getColumnIndex(prefix + "userName")));
 		m.setProductNum(cursor.getString(cursor.getColumnIndex(prefix + "productNum")));
 		m.setUom(cursor.getString(cursor.getColumnIndex(prefix + "uom")));
 		m.setQuantity(cursor.getInt(cursor.getColumnIndex(prefix + "quantity")));
@@ -254,7 +260,9 @@ public class ModelHelper {
 
 		m.put("_id", map.getLong("_id"));
 		m.put("inventoryCountId", map.getLong("inventoryCountId"));
+		m.put("teamId", map.getInt("teamId"));
 		m.put("userId", map.getLong("userId"));
+		m.put("userName", map.getString("userName"));
 		m.put("productNum", map.getString("productNum"));
 		m.put("uom", map.getString("uom"));
 		m.put("quantity", map.getInt("quantity"));
@@ -449,8 +457,14 @@ public class ModelHelper {
 		public long getInventoryCountId() {
 			return mCursor.getLong(mCursor.getColumnIndex(mPrefix + "inventoryCountId"));
 		}
+		public int getTeamId() {
+			return mCursor.getInt(mCursor.getColumnIndex(mPrefix + "teamId"));
+		}
 		public long getUserId() {
 			return mCursor.getLong(mCursor.getColumnIndex(mPrefix + "userId"));
+		}
+		public String getUserName() {
+			return mCursor.getString(mCursor.getColumnIndex(mPrefix + "userName"));
 		}
 		public String getProductNum() {
 			return mCursor.getString(mCursor.getColumnIndex(mPrefix + "productNum"));

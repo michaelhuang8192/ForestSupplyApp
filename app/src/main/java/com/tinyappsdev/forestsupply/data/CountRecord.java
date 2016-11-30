@@ -13,7 +13,9 @@ public class CountRecord {
 
 	long _id;
 	long inventoryCountId;
+	int teamId;
 	long userId;
+	String userName;
 	String productNum;
 	String uom;
 	int quantity;
@@ -38,12 +40,28 @@ public class CountRecord {
 		return this.inventoryCountId;
 	}
 
+	public void setTeamId(int pTeamId) {
+		this.teamId = pTeamId;
+	}
+
+	public int getTeamId() {
+		return this.teamId;
+	}
+
 	public void setUserId(long pUserId) {
 		this.userId = pUserId;
 	}
 
 	public long getUserId() {
 		return this.userId;
+	}
+
+	public void setUserName(String pUserName) {
+		this.userName = pUserName;
+	}
+
+	public String getUserName() {
+		return this.userName;
 	}
 
 	public void setProductNum(String pProductNum) {
@@ -83,7 +101,9 @@ public class CountRecord {
 
 		public final static String COL_ID = "_id";
 		public final static String COL_INVENTORYCOUNTID = "inventoryCountId";
+		public final static String COL_TEAMID = "teamId";
 		public final static String COL_USERID = "userId";
+		public final static String COL_USERNAME = "userName";
 		public final static String COL_PRODUCTNUM = "productNum";
 		public final static String COL_UOM = "uom";
 		public final static String COL_QUANTITY = "quantity";
@@ -92,7 +112,9 @@ public class CountRecord {
 		public final static String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS CountRecord (" + 
 			"_id INTEGER PRIMARY KEY ASC," +
 			"inventoryCountId INTEGER," +
+			"teamId INTEGER," +
 			"userId INTEGER," +
+			"userName TEXT," +
 			"productNum TEXT," +
 			"uom TEXT," +
 			"quantity INTEGER," +
@@ -112,7 +134,9 @@ public class CountRecord {
 			return new String[] {
 				"CountRecord._id AS CountRecord__id",
 				"CountRecord.inventoryCountId AS CountRecord_inventoryCountId",
+				"CountRecord.teamId AS CountRecord_teamId",
 				"CountRecord.userId AS CountRecord_userId",
+				"CountRecord.userName AS CountRecord_userName",
 				"CountRecord.productNum AS CountRecord_productNum",
 				"CountRecord.uom AS CountRecord_uom",
 				"CountRecord.quantity AS CountRecord_quantity",

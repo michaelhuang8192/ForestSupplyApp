@@ -19,6 +19,7 @@ gRouter.get('/getDoc', getDoc);
 gRouter.get('/search', search);
 gRouter.get('/getPage', getPage);
 gRouter.get('/getDocByUPC', getDocByUPC);
+gRouter.get('/getDocByNum', getDocByNum);
 
 
 function getDocs(req, res, next) {
@@ -42,6 +43,16 @@ function getDocByUPC(req, res, next) {
 	);
 }
 
+function getDocByNum(req, res, next) {
+	gDoc.getDoc(req, res, next, 'InventoryCountProduct', 
+		{
+			inventoryCountId: parseInt(req.query.inventoryCountId),
+			productNum: req.query.productNum
+		},
+		{keywords: 0}
+	);
+}
+
 function getPage(req, res, next) {
 	var inventoryCountId = parseInt(req.query.inventoryCountId);
 	gDoc.getPage(req, res, next, "InventoryCountProduct",
@@ -56,6 +67,3 @@ function search(req, res, next) {
 	};
 	return gDoc.getSearchResult(req, res, next, "InventoryCountProduct", opts);
 }
-
-
-

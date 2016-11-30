@@ -11,7 +11,10 @@ import com.tinyappsdev.forestsupply.Scanner.FrameProcessor;
 
 public interface InventoryActivityInterface extends SimpleMasterDetailInterface {
     long getSessionId();
+    int getTeamId();
     void addCountRecord(CountRecord countRecord);
+    void editCountRecord(CountRecord countRecord);
+    void deleteCountRecord(CountRecord countRecord);
     Camera getCamera();
     boolean isCameraRotated();
     void addFrameData(FrameProcessor.FrameData frameData);

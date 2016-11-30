@@ -1,5 +1,5 @@
 import React  from 'react'
-import {Link} from 'react-router'
+import {Link, browserHistory} from 'react-router'
 import {ListView, AjaxAdapter} from './TinyListView'
 
 var adapter = new AjaxAdapter({
@@ -9,22 +9,10 @@ var adapter = new AjaxAdapter({
 adapter.getView = function(position) {
 	var item = this.getItem(position);
 
-	if(item == null) {
+	if(item == null || this._renderListView == null) {
 		return (<div></div>);
 	} else {
-		var date = new Date();
-		date.setTime(item.createdTime);
-
-		return (
-			<div className="list-group-item">
-				<div className="row">
-					<div className="col-xs-1"><b>#{item._id}</b></div>
-					<div className="col-xs-2">{item.productCount}</div>
-					<div className="col-xs-5">{item.name}</div>
-					<div className="col-xs-4">{date.toLocaleString()}</div>
-				</div>
-			</div>
-		);
+		return this._renderListView(item);
 	}
 
 };
@@ -36,13 +24,45 @@ export default class _ extends React.Component {
 		this.req = null;
 	}
 
+	onEdit(item, evt) {
+		evt.stopPropagation();
+
+		var item = $.extend({}, item);
+		if(item.name == null) item.name = "";
+
+		this.setState({item: item});
+		$(this.refs.newCountDialog).modal('show');
+	}
+
+	renderListView(item) {
+		var date = new Date();
+		date.setTime(item.createdTime);
+
+		return (
+			<div className="listItem">
+				<div className="row">
+					<div className="col-xs-1"><b>#{item._id}</b></div>
+					<div className="col-xs-2">{item.productCount}</div>
+					<div className="col-xs-4">{item.name}</div>
+					<div className="col-xs-3">{date.toLocaleString()}</div>
+					<div className="col-xs-2"><button type="button" onClick={this.onEdit.bind(this, item)} className="btn btn-info pull-right"><span className="glyphicon glyphicon-edit"></span> Edit</button></div>
+				</div>
+			</div>
+		);
+	}
+
 	componentDidMount() {
 		$.get("/Api/User/getDocs", (js) => {
 			this.setState({userList: js.docs});
 		}, 'json');
 	}
 
+	componentWillMount() {
+		adapter._renderListView = this.renderListView.bind(this);
+	}
+
 	componentWillUnmount() {
+		adapter._renderListView = null;
 		adapter.refresh();
 	}
 
@@ -81,11 +101,10 @@ export default class _ extends React.Component {
 	}
 
 	onClickItem(position) {
-		var item = $.extend({}, adapter.getItem(position));
-		if(item.name == null) item.name = "";
+		var item = adapter.getItem(position);
+		if(item == null) return;
 
-		this.setState({item: item});
-		$(this.refs.newCountDialog).modal('show');
+		browserHistory.push(`/web/inventory-count-report/${item._id}`);
 	}
 
 	onItemNameChange(event) {
@@ -198,12 +217,11 @@ export default class _ extends React.Component {
 	render() {
     	return (
 <div className="container" id="container_orders">
-	<div>
-<button onClick={this.popNewCountDialog.bind(this)} type="button" className="btn btn-default" aria-label="Left Align">
+	<div className="toolbox">
+<button onClick={this.popNewCountDialog.bind(this)} type="button" className="btn btn-success pull-right" aria-label="Left Align">
   <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
 	</div>
-	<br/>
 	<ListView
 		ref="listView"
 		adapter={adapter}

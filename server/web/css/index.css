@@ -3,10 +3,15 @@
 #footer >div >div {padding-top:0.1in;border-top: 1px solid #eee;font-weight:bold;}
 #footer {margin-top:0.2in;margin-bottom:0.2in;}
 
-#container_orders .tinylistview .tlv_row {height:42px;color:#31708f;right:0;}
-#container_orders .tinylistview .tlv_row >div {padding:4px;}
-#container_orders .tinylistview .tlv_row >div >div {line-height:30px;cursor:pointer;}
+.tinylistview .tlv_row {height:41px;right:0;}
+.tinylistview .tlv_row >div {padding:4px;}
+.tinylistview .tlv_row >div >div {line-height:32px;cursor:pointer;}
 
 #container_order_demo >div {padding-left:0.1in;padding-right:0.1in;}
 
 .textSL {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.toolbox {height:0.5in;}
+
+.tlv_row .listItem {border-bottom: 1px solid #eee;}
+.tlv_row .listItem_matched {background-color:#dff0d8}

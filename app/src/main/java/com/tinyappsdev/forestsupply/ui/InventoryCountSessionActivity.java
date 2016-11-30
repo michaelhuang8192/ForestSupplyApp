@@ -12,11 +12,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.tinyappsdev.forestsupply.AppGlobal;
 import com.tinyappsdev.forestsupply.R;
 import com.tinyappsdev.forestsupply.data.CountRecord;
 import com.tinyappsdev.forestsupply.data.InventoryCount;
+import com.tinyappsdev.forestsupply.data.InventoryCountEmployee;
+import com.tinyappsdev.forestsupply.data.User;
 import com.tinyappsdev.forestsupply.ui.BaseUI.BaseActivity;
 import com.tinyappsdev.forestsupply.ui.BaseUI.LazyAdapter;
 import com.tinyappsdev.forestsupply.ui.InventoryFragment.InventoryItemInfoFragment;
@@ -62,11 +66,22 @@ public class InventoryCountSessionActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void openInventoryCountSession(long _id, String name) {
+    public void openInventoryCountSession(long _id, String name, int teamId) {
         Intent intent = new Intent(this, InventoryActivity.class);
         Bundle bundle = new Bundle();
         bundle.putLong("SessionId", _id);
         bundle.putString("SessionName", name);
+        bundle.putInt("TeamId", teamId);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void openInventoryCountReport(long _id, String name, int teamId) {
+        Intent intent = new Intent(this, InvCountReportActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putLong("SessionId", _id);
+        bundle.putString("SessionName", name);
+        bundle.putInt("TeamId", teamId);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -74,6 +89,7 @@ public class InventoryCountSessionActivity extends BaseActivity {
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.sessionItemCount) TextView sessionItemCount;
         @BindView(R.id.sessionName) TextView sessionName;
+        @BindView(R.id.sessionReport) ImageButton sessionReport;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -100,9 +116,40 @@ public class InventoryCountSessionActivity extends BaseActivity {
                     InventoryCount item = (InventoryCount) getItem(viewHolder.getAdapterPosition());
                     if(item == null) return;
 
-                    openInventoryCountSession(item.getId(), item.getName());
+                    int teamId = 0;
+                    User user = AppGlobal.getInstance().getUser();
+                    if(user != null && item.getEmployeeList() != null) {
+                        for(InventoryCountEmployee emp : item.getEmployeeList()) {
+                            if(emp.getId() != user.getId()) continue;
+                            teamId = emp.getTeamId();
+                            break;
+                        }
+                    }
+
+                    openInventoryCountSession(item.getId(), item.getName(), teamId);
                 }
             });
+
+            viewHolder.sessionReport.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    InventoryCount item = (InventoryCount) getItem(viewHolder.getAdapterPosition());
+                    if(item == null) return;
+
+                    int teamId = 0;
+                    User user = AppGlobal.getInstance().getUser();
+                    if(user != null && item.getEmployeeList() != null) {
+                        for(InventoryCountEmployee emp : item.getEmployeeList()) {
+                            if(emp.getId() != user.getId()) continue;
+                            teamId = emp.getTeamId();
+                            break;
+                        }
+                    }
+
+                    openInventoryCountReport(item.getId(), item.getName(), teamId);
+                }
+            });
+
             return viewHolder;
         }
 

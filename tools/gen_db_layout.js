@@ -25,7 +25,9 @@ var schemas = {
 	CountRecord: {
 		_id: {index: "primary", type: 'long'},
 		inventoryCountId: {type: 'long'},
+		teamId: {type: 'int'},
 		userId: {type: 'long'},
+		userName: {type: 'String'},
 		productNum: {type: 'String'},
 		uom: {type: 'String'},
 		quantity: {type: 'int'},

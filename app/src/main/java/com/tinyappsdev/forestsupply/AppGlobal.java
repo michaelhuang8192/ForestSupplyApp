@@ -11,6 +11,7 @@ import android.util.Log;
 
 
 import com.tinyappsdev.forestsupply.data.ModelHelper;
+import com.tinyappsdev.forestsupply.data.User;
 import com.tinyappsdev.forestsupply.rest.ApiCallClient;
 import com.tinyappsdev.forestsupply.rest.HttpClient;
 import com.tinyappsdev.forestsupply.ui.LoginActivity;
@@ -46,7 +47,16 @@ public class AppGlobal {
     private ApiCallClient mUiApiCallClient;
     private SharedPreferences mSharedPreferences;
     private final Set<Handler> mMsgHandlers = new HashSet();
+    private User mUser;
 
+
+    public void setUser(User user) {
+        mUser = user;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
 
     public AppGlobal(Context context) {
         mContext = context.getApplicationContext();
@@ -105,8 +115,6 @@ public class AppGlobal {
         }
         context.startActivity(intent);
     }
-
-
 
     public void registerMsgHandler(Handler handler) {
         synchronized (mMsgHandlers) {

@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.tinyappsdev.forestsupply.AppGlobal;
 import com.tinyappsdev.forestsupply.R;
+import com.tinyappsdev.forestsupply.data.User;
 import com.tinyappsdev.forestsupply.helper.TinyMap;
 import com.tinyappsdev.forestsupply.helper.TinyUtils;
 import com.tinyappsdev.forestsupply.rest.ApiCallClient;
@@ -55,7 +56,7 @@ public class LoginActivity extends BaseActivity {
                             TinyUtils.showMsgBox(getApplicationContext(), R.string.error_occurred);
                         } else if(map.getBoolean("authFailed")) {
                         } else {
-                            onLoginSuccessful();
+                            onLoginSuccessful(map);
                         }
                     }
                 }
@@ -94,14 +95,19 @@ public class LoginActivity extends BaseActivity {
                             mUserPassword.setText("");
                         } else {
                             mUserPassword.setText("");
-                            onLoginSuccessful();
+                            onLoginSuccessful(map);
                         }
                     }
                 }
         );
     }
 
-    protected void onLoginSuccessful() {
+    protected void onLoginSuccessful(TinyMap map) {
+        User user = new User();
+        user.setId(map.getLong("userId"));
+        user.setName(map.getString("userName"));
+        AppGlobal.getInstance().setUser(user);
+
         Bundle bundle = getIntent().getExtras();
         finish();
         if(bundle == null || !bundle.getBoolean("popup")) {

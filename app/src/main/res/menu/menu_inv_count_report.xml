@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tinyappsdev.forestsupply.ui.MainActivity">
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/refresh"
+        android:title="Refresh"
+        app:showAsAction="ifRoom">
+
+
+    </item>
+    <item
+        android:icon="@drawable/filter"
+        android:title="filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/showALL"
+                    android:title="Show ALL" />
+                <item android:id="@+id/showUnmatched"
+                    android:title="Show Unmatched" />
+            </group>
+        </menu>
+    </item>
+</menu>

@@ -58,7 +58,10 @@ Auth.prototype.getServerAuth = function(userName, userPassword) {
 		if(doc == null || sha256(userPassword) !== doc.password) {
 			return null;
 		} else {
-			return {"serverAuth": doc._id + ":" + sha256(doc.password + doc.secret)};
+			return {
+				user: doc,
+				"serverAuth": doc._id + ":" + sha256(doc.password + doc.secret)
+			};
 		}
 	});
 }
