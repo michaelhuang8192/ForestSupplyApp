@@ -9,6 +9,6 @@ module.exports = {path: "/web", route: gRouter, authNotRequired: true, notApi: t
 var WEB_PATH = gPath.join(__dirname, '../web');
 gRouter.use(gExpress.static(WEB_PATH));
 
-gRouter.all(/^[-\/\w]*$/, (req, res, next) => {
+gRouter.all(/^[-/\w]*$/, (req, res, next) => {
 	res.sendFile(WEB_PATH + "/index.html");
 });
