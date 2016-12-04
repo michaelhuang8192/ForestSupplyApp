@@ -422,18 +422,28 @@ function _getCountReport(db, inventoryCountId, compactMode) {
 		if(compactMode) {
 			for(var doc of retDocs) {
 				var team1 = [];
-				for(var k in doc.records[0])
+				var team1_ = [];
+				for(var k in doc.records[0]) {
 					team1.push(`${doc.records[0][k]}${k}`);
+					if(doc.records[0][k]) team1_.push(`${doc.records[0][k]}${k}`);
+				}
 				team1.sort();
+				team1_.sort();
 				doc.team1 = team1.join(', ');
+				team1_ = team1_.join(', ');
 
 				var team2 = [];
-				for(var k in doc.records[1])
+				var team2_ = [];
+				for(var k in doc.records[1]) {
 					team2.push(`${doc.records[1][k]}${k}`);
+					if(doc.records[1][k]) team2_.push(`${doc.records[1][k]}${k}`);
+				}
 				team2.sort();
+				team2_.sort();
 				doc.team2 = team2.join(', ');
+				team2_ = team2_.join(', ');
 
-				doc.matched = doc.team1 == doc.team2;
+				doc.matched = team1_ == team2_;
 			}
 			delete doc.records;
 		}
